@@ -6,9 +6,9 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 /**
  * 运行时需要启动zooKeeper ,需要执行Provider或者启动tomcat服务，启动tomcat前需要已经启动zookeeper
  */
-public class Consumer {
+public class ConsumerRedis {
     public static void main(String[] args) throws Exception {
-        ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext(new String[]{"/dubbo/consumerDubbo.xml"});
+        ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext(new String[]{"/dubbo/consumerRedis.xml"});
         context.start();
         // obtain proxy object for remote invocation
         HelloService helloService = (HelloService) context.getBean("helloService");
