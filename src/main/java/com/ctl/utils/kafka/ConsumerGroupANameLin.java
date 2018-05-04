@@ -7,7 +7,7 @@ import org.apache.kafka.clients.consumer.KafkaConsumer;
 import java.util.Arrays;
 import java.util.Properties;
 
-public class ConsumerDemo {
+public class ConsumerGroupANameLin {
 
     public static void main(String[] args) {
         Properties props = new Properties();
@@ -15,7 +15,8 @@ public class ConsumerDemo {
         props.put("bootstrap.servers", ProducerDemo.serverHost);
         System.out.println("this is the group part test 1");
         //消费者的组id
-        props.put("group.id", "GroupA");//这里是GroupA或者GroupB
+        props.put("group.id", "GroupA");//这里是GroupA或者GroupB  group组的名字 （做group组区分）
+        props.put("group.name", "lin");//当前group组中的名字 同一个group不同的name可以实现在同一个group下面consumer只消费一次
 
         props.put("enable.auto.commit", "true");
         props.put("auto.commit.interval.ms", "1000");
@@ -37,7 +38,7 @@ public class ConsumerDemo {
             ConsumerRecords<String, String> records = consumer.poll(100);
             for (ConsumerRecord<String, String> record : records)
                 //　正常这里应该使用线程池处理，不应该在这里处理
-                System.out.printf("offset = %d, key = %s, value = %s", record.offset(), record.key(), record.value() + "\n");
+                System.out.printf("ConsumerGroupANameLin offset = %d, key = %s, value = %s", record.offset(), record.key(), record.value() + "\n");
 
         }
     }

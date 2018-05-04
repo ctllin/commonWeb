@@ -53,7 +53,7 @@
     <!-- <logger name="com.hanshow.distribution.core.mapper" level="WARN"></logger> -->
 
     <!-- 日志输出级别 TRACE, DEBUG, INFO, WARN, ERROR, ALL 和 OFF -->
-    <root level="DEBUG">
+    <root level="INFO">
         <appender-ref ref="StdOut"/>
         <appender-ref ref="File"/>
     </root>
