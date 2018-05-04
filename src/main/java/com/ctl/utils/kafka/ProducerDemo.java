@@ -3,7 +3,10 @@ package com.ctl.utils.kafka;
 import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.Producer;
 import org.apache.kafka.clients.producer.ProducerRecord;
+import org.apache.kafka.common.PartitionInfo;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Properties;
 
 /**
@@ -24,7 +27,9 @@ import java.util.Properties;
  931 Jps
  */
 public class ProducerDemo {
-    public static String serverHost="192.168.42.29:9092";
+    public static String topic="top";
+    public static Integer num=10;
+    public static String serverHost="192.168.42.29:9092,192.168.42.3:9092";
     public static void main(String[] args) {
         Properties props = new Properties();
         props.put("bootstrap.servers", serverHost);
@@ -43,6 +48,7 @@ public class ProducerDemo {
         //The key.serializer and value.serializer instruct how to turn the key and value objects the user provides with their ProducerRecord into bytes.
         props.put("key.serializer", "org.apache.kafka.common.serialization.StringSerializer");
         props.put("value.serializer", "org.apache.kafka.common.serialization.StringSerializer");
+        props.put("partitioner.class", "org.apache.kafka.clients.producer.internals.DefaultPartitioner");
 
         //创建kafka的生产者类
         Producer<String, String> producer = new KafkaProducer<String, String>(props);
@@ -50,11 +56,19 @@ public class ProducerDemo {
         // close();//Close this producer.
         //   close(long timeout, TimeUnit timeUnit); //This method waits up to timeout for the producer to complete the sending of all incomplete requests.
         //  flush() ;所有缓存记录被立刻发送
-        for (int i = 0; i < 100; i++) {
-             //这里平均写入４个分区
+        for (int i = 0; i < num; i++) {
+             //这里平均写入４个分区 第一步 在kaifa config 中的 server.properties 中配置为 num.partitions=4
+            // 第二步 ./kafka-topics.sh  --create  --zookeeper 192.168.42.29:2181,192.168.42.3:2181 --replication-factor 1 --partitions 4  --topic foo
+            // ./kafka-topics.sh --delete --zookeeper 192.168.42.29:2181,192.168.42.3:2181 --topic foo
              //producer.send(new ProducerRecord<String, String>("foo", i % 4, Integer.toString(i), Integer.toString(i)));
              //因为没有建立集群所以只能是0个分区
-             producer.send(new ProducerRecord<String, String>("foo", 0, Integer.toString(i), Integer.toString(i)));
+             producer.send(new ProducerRecord<String, String>(topic, i % 4, Integer.toString(i), Integer.toString(i)));
+        }
+        List<PartitionInfo> partitions = new ArrayList<PartitionInfo>() ;
+        partitions = producer.partitionsFor(topic);
+        for(PartitionInfo p:partitions)
+        {
+            System.out.println(p);
         }
         // bin/kafka-topics.sh --zookeeper localhost:2181 --delete --topic foo  删除foo主题
         producer.close();

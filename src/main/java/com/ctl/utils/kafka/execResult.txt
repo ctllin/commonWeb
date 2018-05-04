@@ -1,0 +1,30 @@
+四个分区
+kafka 集群每个配置文件  config 中的 server.properties 中配置为 num.partitions=4
+在其中一台kafka上执行 topic创建  ./kafka-topics.sh  --create  --zookeeper 192.168.42.29:2181,192.168.42.3:2181 --replication-factor 1 --partitions 4  --topic foo
+group.id=GroupA group.name=ctl
+ConsumerGroupANameCtl offset = 125, key = 3, value = 3
+ConsumerGroupANameCtl offset = 126, key = 7, value = 7
+ConsumerGroupANameCtl offset = 125, key = 2, value = 2
+ConsumerGroupANameCtl offset = 126, key = 6, value = 6
+
+group.id=GroupA group.name=lin
+ConsumerGroupANameLin offset = 125, key = 0, value = 0
+ConsumerGroupANameLin offset = 126, key = 4, value = 4
+ConsumerGroupANameLin offset = 127, key = 8, value = 8
+ConsumerGroupANameLin offset = 125, key = 1, value = 1
+ConsumerGroupANameLin offset = 126, key = 5, value = 5
+ConsumerGroupANameLin offset = 127, key = 9, value = 9
+
+group.id=GroupB group.name=ctl
+ConsumerGroupBNameCtl offset = 125, key = 3, value = 3
+ConsumerGroupBNameCtl offset = 126, key = 7, value = 7
+ConsumerGroupBNameCtl offset = 125, key = 2, value = 2
+ConsumerGroupBNameCtl offset = 126, key = 6, value = 6
+
+group.id=GroupB group.name=lin
+ConsumerGroupBNameLin offset = 125, key = 1, value = 1
+ConsumerGroupBNameLin offset = 126, key = 5, value = 5
+ConsumerGroupBNameLin offset = 127, key = 9, value = 9
+ConsumerGroupBNameLin offset = 125, key = 0, value = 0
+ConsumerGroupBNameLin offset = 126, key = 4, value = 4
+ConsumerGroupBNameLin offset = 127, key = 8, value = 8

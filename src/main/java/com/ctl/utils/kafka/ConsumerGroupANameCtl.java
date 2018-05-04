@@ -20,7 +20,9 @@ public class ConsumerGroupANameCtl {
 
         props.put("enable.auto.commit", "true");
         props.put("auto.commit.interval.ms", "1000");
-
+        props.put("zookeeper.connect", "192.168.42.29:2181,192.168.42.3:2182");
+        props.put("zookeeper.session.timeout.ms", "400");
+        props.put("zookeeper.sync.time.ms", "200");
         //从poll(拉)的回话处理时长
         props.put("session.timeout.ms", "30000");
         //poll的数量限制
@@ -32,7 +34,7 @@ public class ConsumerGroupANameCtl {
 
         KafkaConsumer<String, String> consumer = new KafkaConsumer<String, String>(props);
         //订阅主题列表topic
-        consumer.subscribe(Arrays.asList("foo"));
+        consumer.subscribe(Arrays.asList(ProducerDemo.topic));
 
         while (true) {
             ConsumerRecords<String, String> records = consumer.poll(100);
