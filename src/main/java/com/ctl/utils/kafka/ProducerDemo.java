@@ -21,6 +21,8 @@ import java.util.Properties;
  listeners=PLAINTEXT://192.168.42.29:9092
  advertised.listeners=PLAINTEXT://192.168.42.29:9092
 
+ 如果生产者早于消费者启动，消费者启动后需要过一会才能获取到数据（如果消费者已经启动，那么生产者产生数据那么消费者基本很快获取到数据）
+ 同一个分组下不同的group.name  如果生产者产生数据，但是消费者分组只有一个启动，那个该消费者会消费该数据，其他消费者启动后，就无法消费生产者产生的数据，可以消费下次生产者产生的数据
 
  821 QuorumPeerMain
  928 Kafka
