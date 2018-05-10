@@ -6,6 +6,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 /**
  * 运行时需要启动redis ,需要执行Provider或者启动tomcat服务，启动tomcat前需要已经启动redis
  * 如果服务的在但是redis停止服务,依旧可以访问接口  3 mater 5 slave
+ * dubbo redis 集群 3master slave>3 这样死的不论是master还是slave都不会报错
  * redis://192.168.42.29:6379?backup=192.168.42.29:6380,192.168.42.29:6381 如果6381关闭这时6383会变成master  节点尽量不小于6 3mater slave>=3 */
 public class ConsumerRedisCluster {
     public static void main(String[] args) throws Exception {
