@@ -1,0 +1,21 @@
+Zookeeper单机配置：
+方式一、
+
+<dubbo:registry
+address="zookeeper://10.20.153.10:2181"/>
+方式二、
+
+<dubbo:registry
+protocol="zookeeper"
+address="10.20.153.10:2181"/>
+Zookeeper集群配置:
+
+方式一、
+
+<dubbo:registry address="zookeeper://10.20.153.10:2181?backup=10.20.153.11:2181,10.20.153.12:2181"/>
+方式二、
+
+<dubbo:registry
+protocol="zookeeper"
+address="10.20.153.10:2181,10.20.153.11:2181,10.20.153.12/>
+集群配置方式一，特别适用于dubbo-admin 和dubbo-monitor
