@@ -5,10 +5,10 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
     <dubbo:application name="demo-consumer" owner="ctllin" organization="ctl"/>
     <!--<dubbo:registry address="multicast://224.5.6.7:1234" />-->
-    <!--<dubbo:registry address="redis://192.168.42.29:6379"  username="" password="liebe"/> &lt;!&ndash; redis配置了密码 &ndash;&gt;-->
-    <!--<dubbo:registry  address="redis://192.168.42.29:6379?backup=192.168.42.29:6380,192.168.42.29:6381,192.168.42.29:6382,192.168.42.29:6383,192.168.42.29:6384"/>-->
+    <!--<dubbo:registry address="redis://192.168.42.3:6379"  username="" password="liebe"/> &lt;!&ndash; redis配置了密码 &ndash;&gt;-->
+    <!--<dubbo:registry  address="redis://192.168.42.3:6379?backup=192.168.42.3:6380,192.168.42.3:6381,192.168.42.3:6382,192.168.42.3:6383,192.168.42.3:6384"/>-->
     <!-- 三个master 不可以添加slave -->
-    <dubbo:registry  address="redis://192.168.42.29:6379?backup=192.168.42.29:6380,192.168.42.29:6381"/>
+    <dubbo:registry  address="redis://192.168.42.3:6379?backup=192.168.42.3:6380,192.168.42.3:6381"/>
 
     <dubbo:reference id="helloService" interface="com.ctl.web.dubbo.service.HelloService"/>
 </beans>
