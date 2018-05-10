@@ -19,3 +19,39 @@ Zookeeper集群配置:
 protocol="zookeeper"
 address="10.20.153.10:2181,10.20.153.11:2181,10.20.153.12/>
 集群配置方式一，特别适用于dubbo-admin 和dubbo-monitor
+
+/home/soft/cluster-zookeeper-3.5.3-beta/zookeeper-3.5.3-beta-2181/bin/zkServer.sh start /home/soft/cluster-zookeeper-3.5.3-beta/zookeeper-3.5.3-beta-2181/conf/zoo.cfg
+/home/soft/cluster-zookeeper-3.5.3-beta/zookeeper-3.5.3-beta-2182/bin/zkServer.sh start /home/soft/cluster-zookeeper-3.5.3-beta/zookeeper-3.5.3-beta-2182/conf/zoo.cfg
+/home/soft/cluster-zookeeper-3.5.3-beta/zookeeper-3.5.3-beta-2183/bin/zkServer.sh start /home/soft/cluster-zookeeper-3.5.3-beta/zookeeper-3.5.3-beta-2183/conf/zoo.cfg
+
+/home/soft/cluster-zookeeper-3.5.3-beta/zookeeper-3.5.3-beta-2181/bin/zkServer.sh status
+/home/soft/cluster-zookeeper-3.5.3-beta/zookeeper-3.5.3-beta-2182/bin/zkServer.sh status
+/home/soft/cluster-zookeeper-3.5.3-beta/zookeeper-3.5.3-beta-2183/bin/zkServer.sh status
+
+/home/soft/cluster-zookeeper-3.5.3-beta/zookeeper-3.5.3-beta-2181/bin/zkServer.sh stop
+/home/soft/cluster-zookeeper-3.5.3-beta/zookeeper-3.5.3-beta-2182/bin/zkServer.sh stop
+/home/soft/cluster-zookeeper-3.5.3-beta/zookeeper-3.5.3-beta-2183/bin/zkServer.sh stop
+
+三个zookeeper都死掉报如下错误,会循环调用三个地址，直到超时
+
+[21:26:24] [org.apache.zookeeper.ClientCnxn.logStartConnect(ClientCnxn.java:1032)] Opening socket connection to server 192.168.42.29/192.168.42.29:2181. Will not attempt to authenticate using SASL (unknown error)
+[21:26:25] [org.apache.zookeeper.ClientCnxn.run(ClientCnxn.java:1162)] Session 0x0 for server null, unexpected error, closing socket connection and attempting reconnect
+java.net.ConnectException: Connection refused: no further information
+	at sun.nio.ch.SocketChannelImpl.checkConnect(Native Method)
+	at sun.nio.ch.SocketChannelImpl.finishConnect(SocketChannelImpl.java:717)
+	at org.apache.zookeeper.ClientCnxnSocketNIO.doTransport(ClientCnxnSocketNIO.java:361)
+	at org.apache.zookeeper.ClientCnxn$SendThread.run(ClientCnxn.java:1141)
+[21:26:25] [org.apache.zookeeper.ClientCnxn.logStartConnect(ClientCnxn.java:1032)] Opening socket connection to server 192.168.42.29/192.168.42.29:2182. Will not attempt to authenticate using SASL (unknown error)
+[21:26:26] [org.apache.zookeeper.ClientCnxn.run(ClientCnxn.java:1162)] Session 0x0 for server null, unexpected error, closing socket connection and attempting reconnect
+java.net.ConnectException: Connection refused: no further information
+	at sun.nio.ch.SocketChannelImpl.checkConnect(Native Method)
+	at sun.nio.ch.SocketChannelImpl.finishConnect(SocketChannelImpl.java:717)
+	at org.apache.zookeeper.ClientCnxnSocketNIO.doTransport(ClientCnxnSocketNIO.java:361)
+	at org.apache.zookeeper.ClientCnxn$SendThread.run(ClientCnxn.java:1141)
+[21:26:27] [org.apache.zookeeper.ClientCnxn.logStartConnect(ClientCnxn.java:1032)] Opening socket connection to server 192.168.42.29/192.168.42.29:2183. Will not attempt to authenticate using SASL (unknown error)
+[21:26:28] [org.apache.zookeeper.ClientCnxn.run(ClientCnxn.java:1162)] Session 0x0 for server null, unexpected error, closing socket connection and attempting reconnect
+java.net.ConnectException: Connection refused: no further information
+	at sun.nio.ch.SocketChannelImpl.checkConnect(Native Method)
+	at sun.nio.ch.SocketChannelImpl.finishConnect(SocketChannelImpl.java:717)
+	at org.apache.zookeeper.ClientCnxnSocketNIO.doTransport(ClientCnxnSocketNIO.java:361)
+	at org.apache.zookeeper.ClientCnxn$SendThread.run(ClientCnxn.java:1141)
