@@ -5,6 +5,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 /**
  * 运行时需要启动zooKeeper ,需要执行Provider或者启动tomcat服务，启动tomcat前需要已经启动zookeeper
+ * leader死掉之后需要过一点时间才会执行成功(follower 转leader需要时间)
  */
 public class ConsumerZookeeper {
     public static void main(String[] args) throws Exception {
