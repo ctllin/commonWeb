@@ -31,7 +31,7 @@ import java.util.Properties;
 public class ProducerDemo {
     public static String topic="top";
     public static Integer num=10;
-    public static String serverHost="192.168.42.29:9092,192.168.42.3:9092";
+    public static String serverHost="192.168.42.29:9091,192.168.42.29:9092,192.168.42.29:9093";
     public static void main(String[] args) {
         Properties props = new Properties();
         props.put("bootstrap.servers", serverHost);
