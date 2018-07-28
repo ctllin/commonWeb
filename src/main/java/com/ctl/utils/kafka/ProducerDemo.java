@@ -1,13 +1,13 @@
 package com.ctl.utils.kafka;
 
+import com.ctl.utils.DateUtil;
+import net.sf.json.JSONObject;
 import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.Producer;
 import org.apache.kafka.clients.producer.ProducerRecord;
 import org.apache.kafka.common.PartitionInfo;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Properties;
+import java.util.*;
 
 /**
  * 需要安装环境
@@ -64,7 +64,14 @@ public class ProducerDemo {
             // ./kafka-topics.sh --delete --zookeeper 192.168.42.29:2181,192.168.42.3:2181 --topic foo
              //producer.send(new ProducerRecord<String, String>("foo", i % 4, Integer.toString(i), Integer.toString(i)));
              //因为没有建立集群所以只能是0个分区
-             producer.send(new ProducerRecord<String, String>(topic, i % 4, Integer.toString(i), Integer.toString(i)));
+            Person person = new Person();
+            person.setAge(27);
+            person.setId(UUID.randomUUID().toString());
+            person.setName("ctl"+ DateUtil.sdfyyyy_MM_dd_HH_mm_ss.format(new Date()));
+            person.setRemark("ich liebe dich");
+            person.setSalary(18.99d);
+            person.setStatus((byte)1);
+             producer.send(new ProducerRecord<String, String>(topic, i % 4, Integer.toString(i), JSONObject.fromObject(person).toString()));
         }
         List<PartitionInfo> partitions = new ArrayList<PartitionInfo>() ;
         partitions = producer.partitionsFor(topic);
