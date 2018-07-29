@@ -20,7 +20,7 @@ public class ConsumerGroupANameCtl {
 
         props.put("enable.auto.commit", "true");
         props.put("auto.commit.interval.ms", "1000");
-        props.put("zookeeper.connect", "192.168.42.29:2181,192.168.42.3:2182");
+        props.put("zookeeper.connect", ProducerDemo.zookeeperConnect);
         props.put("zookeeper.session.timeout.ms", "400");
         props.put("zookeeper.sync.time.ms", "200");
         //从poll(拉)的回话处理时长
