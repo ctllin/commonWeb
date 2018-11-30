@@ -250,16 +250,15 @@
       <version>1.0.0</version>
     </dependency>
     <!-- https://mvnrepository.com/artifact/org.springframework.kafka/spring-kafka -->
-    <dependency>
+   <!-- <dependency>
       <groupId>org.springframework.kafka</groupId>
       <artifactId>spring-kafka</artifactId>
       <version>2.2.2.RELEASE</version>
-    </dependency>
-    <!-- https://mvnrepository.com/artifact/org.springframework.integration/spring-integration-kafka -->
+    </dependency>-->
     <dependency>
       <groupId>org.springframework.kafka</groupId>
       <artifactId>spring-kafka</artifactId>
-      <version>2.1.0.RELEASE</version>
+      <version>2.1.11.RELEASE</version><!--2.2以上版本不支持 指定具体监听类-->
     </dependency>
 
   </dependencies>
