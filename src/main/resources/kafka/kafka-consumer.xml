@@ -34,7 +34,6 @@
             <ref bean="consumerProperties"/>
         </constructor-arg>
     </bean>
-
     <bean id="containerProperties" class="org.springframework.kafka.listener.ContainerProperties">
         <constructor-arg value="test"/>
         <property name="messageListener" ref="messageListernerConsumerService"/>
