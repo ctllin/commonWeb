@@ -236,15 +236,7 @@
       <version>2.2.2.RELEASE</version>
     </dependency>
 
-
   </dependencies>
-
-
-
-
-
-
-
 
   <properties>
     <redis.clients.version>2.9.0</redis.clients.version>
