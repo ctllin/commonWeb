@@ -30,6 +30,8 @@ public class KafkaController {
     public void hello(){
         logger.info("kafka/hello is excute");
         kafkaTemplate.sendDefault("test it");
+       // kafkaTemplate.send("test",1,"1");
+        kafkaTemplate.send("test", "1");
     }
 
 }

@@ -12,7 +12,7 @@
                 <!--Kafka服务地址 -->
                 <entry key="bootstrap.servers" value="192.168.42.29:9092" />
                 <!--Consumer的组ID，相同goup.id的consumer属于同一个组。 -->
-                <entry key="group.id" value="order-beta" />
+                <entry key="group.id" value="group0"/>
                 <!--如果此值设置为true，consumer会周期性的把当前消费的offset值保存到zookeeper。当consumer失败重启之后将会使用此值作为新开始消费的值。 -->
                 <entry key="enable.auto.commit" value="true" />
                 <!--网络请求的socket超时时间。实际超时时间由max.fetch.wait + socket.timeout.ms 确定 -->
@@ -26,7 +26,7 @@
     </bean>
 
     <!--指定具体监听类的bean -->
-    <bean id="messageListernerConsumerService" class="com.ctl.utils.kafka.KafkaConsumerListener" />
+    <bean id="messageListernerConsumerService" class="com.ctl.web.kafka.controller.KafkaConsumerListener" />
 
     <!-- 创建consumerFactory bean -->
     <bean id="consumerFactory" class="org.springframework.kafka.core.DefaultKafkaConsumerFactory">
@@ -34,7 +34,7 @@
             <ref bean="consumerProperties"/>
         </constructor-arg>
     </bean>
-    <bean id="containerProperties" class="org.springframework.kafka.listener.ContainerProperties">
+    <bean id="containerProperties" class="org.springframework.kafka.listener.config.ContainerProperties">
         <constructor-arg value="test"/>
         <property name="messageListener" ref="messageListernerConsumerService"/>
     </bean>
