@@ -1,5 +1,7 @@
 package com.ctl.web.kafka.controller;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,13 +21,15 @@ import java.util.Date;
 @Controller
 @RequestMapping(value="/kafka")
 public class KafkaController {
+    Logger logger = LoggerFactory.getLogger(KafkaController.class);
+
     @Resource
     private KafkaTemplate<Integer, String> kafkaTemplate;
 
     @RequestMapping(value = "/hello")
     public void hello(){
-        System.out.println(kafkaTemplate);
-        kafkaTemplate.sendDefault("test it"+new Date());
+        logger.info("kafka/hello is excute");
+        kafkaTemplate.sendDefault("test it");
     }
 
 }
