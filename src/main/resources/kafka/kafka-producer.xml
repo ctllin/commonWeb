@@ -12,7 +12,11 @@
         <constructor-arg>
             <map>
                 <!-- kafka服务地址，可能是集群-->
-                <entry key="bootstrap.servers" value="localhost:9092,localhost:9093,localhost:9094" />
+<!--
+                <entry key="bootstrap.servers" value="192.168.42.29:9092,localhost:9093,localhost:9094" />
+-->
+                <entry key="bootstrap.servers" value="192.168.42.29:9092" />
+
                 <!-- 有可能导致broker接收到重复的消息,默认值为3-->
                 <entry key="retries" value="10" />
                 <!-- 每次批量发送消息的数量-->
@@ -38,7 +42,7 @@
     </bean>
 
     <!-- 创建kafkatemplate bean，使用的时候，只需要注入这个bean，即可使用template的send消息方法 -->
-    <bean id="KafkaTemplate" class="org.springframework.kafka.core.KafkaTemplate">
+    <bean id="kafkaTemplate" class="org.springframework.kafka.core.KafkaTemplate">
         <constructor-arg ref="producerFactory" />
         <!--设置对应topic-->
         <property name="defaultTopic" value="test" />

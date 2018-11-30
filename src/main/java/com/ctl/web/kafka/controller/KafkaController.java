@@ -1,4 +1,4 @@
-package com.ctl.web.kafka;
+package com.ctl.web.kafka.controller;
 
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Controller;
@@ -24,6 +24,7 @@ public class KafkaController {
 
     @RequestMapping(value = "/hello")
     public void hello(){
+        System.out.println(kafkaTemplate);
         kafkaTemplate.sendDefault("test it"+new Date());
     }
 
