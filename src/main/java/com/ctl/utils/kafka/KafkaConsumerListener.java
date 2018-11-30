@@ -19,6 +19,6 @@ public class KafkaConsumerListener implements MessageListener<Integer, String> {
     Logger logger = LoggerFactory.getLogger(KafkaConsumerListener.class);
     public void onMessage(ConsumerRecord<Integer, String> consumerRecord) {
         Object o = consumerRecord.value();
-        System.out.println(String.valueOf(o));
+        logger.info(String.valueOf(o));
     }
 }
