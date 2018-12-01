@@ -32,6 +32,7 @@ public class KafkaController {
        // kafkaTemplate.sendDefault("test it");
        // kafkaTemplate.send("test",1,"1");
         kafkaTemplate.send("test", "1");
+
     }
 
 }
