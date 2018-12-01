@@ -29,7 +29,7 @@ public class KafkaController {
     @RequestMapping(value = "/hello")
     public void hello(){
         logger.info("kafka/hello is excute");
-        kafkaTemplate.sendDefault("test it");
+       // kafkaTemplate.sendDefault("test it");
        // kafkaTemplate.send("test",1,"1");
         kafkaTemplate.send("test", "1");
     }

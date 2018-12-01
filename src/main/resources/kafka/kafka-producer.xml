@@ -48,6 +48,5 @@
         <!--设置对应topic-->
         <property name="defaultTopic" value="test" />
     </bean>
-
-
+    <bean id="producerListener" class="com.ctl.web.kafka.controller.KafkaProducerListener" />
 </beans>
