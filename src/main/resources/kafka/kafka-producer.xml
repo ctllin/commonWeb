@@ -29,6 +29,8 @@
                 <entry key="acks" value="all" />
                 <entry key="key.serializer" value="org.apache.kafka.common.serialization.StringSerializer" />
                 <entry key="value.serializer" value="org.apache.kafka.common.serialization.StringSerializer" />
+                <entry key="partitioner.class" value="org.apache.kafka.clients.producer.internals.DefaultPartitioner" />
+
             </map>
         </constructor-arg>
     </bean>

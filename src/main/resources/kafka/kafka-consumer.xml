@@ -17,10 +17,9 @@
                 <entry key="enable.auto.commit" value="true" />
                 <!--网络请求的socket超时时间。实际超时时间由max.fetch.wait + socket.timeout.ms 确定 -->
                 <entry key="session.timeout.ms" value="15000 " />
-                <entry key="key.deserializer"
-                       value="org.apache.kafka.common.serialization.StringDeserializer" />
-                <entry key="value.deserializer"
-                       value="org.apache.kafka.common.serialization.StringDeserializer" />
+                <entry key="key.deserializer" value="org.apache.kafka.common.serialization.StringDeserializer" />
+                <entry key="value.deserializer" value="org.apache.kafka.common.serialization.StringDeserializer" />
+                <entry key="partitioner.class" value="org.apache.kafka.clients.producer.internals.DefaultPartitioner" />
             </map>
         </constructor-arg>
     </bean>

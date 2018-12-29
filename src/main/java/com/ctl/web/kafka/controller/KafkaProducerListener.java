@@ -1,5 +1,7 @@
 package com.ctl.web.kafka.controller;
 
+import net.sf.json.JSONObject;
+import org.apache.kafka.clients.producer.ProducerRecord;
 import org.apache.kafka.clients.producer.RecordMetadata;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,7 +17,7 @@ import org.springframework.kafka.support.ProducerListener;
  * @date 2018-12-01 14:04
  */
 public class KafkaProducerListener implements ProducerListener{
-    protected final Logger logger = LoggerFactory.getLogger(KafkaProducerListener.class);
+    static Logger logger = LoggerFactory.getLogger(KafkaProducerListener.class);
     /**
      * 发送消息成功后调用
      */
@@ -45,5 +47,16 @@ public class KafkaProducerListener implements ProducerListener{
         exception.printStackTrace();
     }
 
+    @Override
+    public void onSuccess(ProducerRecord producerRecord, RecordMetadata recordMetadata) {
+        //producerRecord使用JSONObject转后为{}所以使用toString
+        logger.info("Message send success :{}", producerRecord);
+    }
+
+    @Override
+    public void onError(ProducerRecord producerRecord, Exception exception) {
+        //producerRecord使用JSONObject转后为{}所以使用toString
+        logger.error("Message send error :{}" , producerRecord, exception);
+    }
 
 }
