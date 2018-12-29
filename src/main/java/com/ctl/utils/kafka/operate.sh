@@ -13,4 +13,4 @@ tar -cvf 192.168.43.29.kafka.config.tar config/
 启动kafka集群192.168.42.3/192.168.42.29
 /home/soft/kafka_2.12-1.1.0/bin/kafka-server-start.sh /home/soft/kafka_2.12-1.1.0/config/server.properties &
 //查询所有的topic
-/home/soft/kafka_2.12-1.1.0/bin/kafka-topics.sh --zookeeper 192.168.42.29:2181 --list
+/home/soft/kafka_2.12-1.1.0/bin/kafka-topics.sh --zookeeper 192.168.42.29:2181,192.168.42.29:2182,192.168.42.29:2183 --list
