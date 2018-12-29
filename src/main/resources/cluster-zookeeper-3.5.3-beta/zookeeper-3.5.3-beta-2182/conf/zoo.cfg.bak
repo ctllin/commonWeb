@@ -1,0 +1,9 @@
+initLimit=10
+syncLimit=5
+clientPort=2182
+tickTime=2000
+server.0=192.168.42.29:2888:3888
+server.1=192.168.42.29:2889:3889
+server.2=192.168.42.29:2890:3890
+dataDir=/home/soft/cluster-zookeeper-3.5.3-beta/zookeeper-3.5.3-beta-2182/data
+dataLogDir=/home/soft/cluster-zookeeper-3.5.3-beta/logs/2182.log
