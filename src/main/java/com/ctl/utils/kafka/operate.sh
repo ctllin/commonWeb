@@ -17,4 +17,7 @@ home/soft/cluster-zookeeper-3.5.3-beta/zookeeperStart.sh
 /home/soft/kafka_2.12-1.1.0/bin/kafka-topics.sh --zookeeper 192.168.42.29:2181,192.168.42.29:2182,192.168.42.29:2183 --list
 在其中一台kafka上执行 topic创建
  ./kafka-topics.sh  --create  --zookeeper 192.168.42.29:2181,192.168.42.29:2182,192.168.42.29:2183 --replication-factor 1 --partitions 4  --topic ordercall
-
+查看指定topic信息
+bin/kafka-topics.sh --zookeeper 192.168.42.29:2181,192.168.42.29:2182,192.168.42.29:2183 --describe --topic  ordercall
+查看所有topic列表
+bin/kafka-topics.sh --zookeeper 192.168.42.29:2181,192.168.42.29:2182,192.168.42.29:2183 --list
