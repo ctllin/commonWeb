@@ -49,6 +49,7 @@
         <constructor-arg  name="autoFlush" value="true" />
         <!--设置对应topic-->
         <property name="defaultTopic" value="${kafka.defaultTopic}" />
+        <property name="producerListener" value="producerListener" />
     </bean>
     <bean id="producerListener" class="com.ctl.web.kafka.controller.KafkaProducerListener" />
 </beans>

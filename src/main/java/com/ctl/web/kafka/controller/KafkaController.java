@@ -26,13 +26,13 @@ public class KafkaController {
     Logger logger = LoggerFactory.getLogger(KafkaController.class);
     @Resource
     private KafkaTemplate<Integer, String> kafkaTemplate;
-    @Autowired
-    private KafkaProducerListener producerListener;
+//    @Autowired
+//    private KafkaProducerListener producerListener;
 
     @RequestMapping(value = "/hello")
     public void hello() {
         logger.info("kafka/hello is excute");
-        kafkaTemplate.setProducerListener(producerListener);
+       // kafkaTemplate.setProducerListener(producerListener);
         kafkaTemplate.send(ConfigUtils.getType("kafka.defaultTopic"), "1");
 
     }
