@@ -31,7 +31,7 @@ public class KafkaController {
         logger.info("kafka/hello is excute");
        // kafkaTemplate.sendDefault("test it");
        // kafkaTemplate.send("test",1,"1");
-        kafkaTemplate.send("test", "1");
+        kafkaTemplate.send("ordercall", "1");
 
     }
 
