@@ -43,13 +43,13 @@
         </constructor-arg>
     </bean>
 
+    <bean id="producerListener" class="com.ctl.web.kafka.controller.KafkaProducerListener" />
     <!-- 创建kafkatemplate bean，使用的时候，只需要注入这个bean，即可使用template的send消息方法 -->
     <bean id="kafkaTemplate" class="org.springframework.kafka.core.KafkaTemplate">
         <constructor-arg ref="producerFactory" />
         <constructor-arg  name="autoFlush" value="true" />
         <!--设置对应topic-->
         <property name="defaultTopic" value="${kafka.defaultTopic}" />
-        <property name="producerListener" value="producerListener" />
+        <property name="producerListener" ref="producerListener" />
     </bean>
-    <bean id="producerListener" class="com.ctl.web.kafka.controller.KafkaProducerListener" />
 </beans>
