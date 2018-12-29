@@ -9,8 +9,8 @@
     <bean id="consumerProperties" class="java.util.HashMap">
         <constructor-arg>
             <map>
-                <!--Kafka服务地址 -->
-                <entry key="bootstrap.servers" value="192.168.42.29:9092" />
+                <!--Kafka服务地址 多个,隔开 -->
+                <entry key="bootstrap.servers" value="${bootstrap.servers}" />
                 <!--Consumer的组ID，相同goup.id的consumer属于同一个组。 -->
                 <entry key="group.id" value="group2"/> <!-- 多个消费者组名相同就共同消费,如果消费者名称不同择分别消费 例如一个四个 -->
                 <!--如果此值设置为true，consumer会周期性的把当前消费的offset值保存到zookeeper。当consumer失败重启之后将会使用此值作为新开始消费的值。 -->
@@ -35,7 +35,8 @@
         </constructor-arg>
     </bean>
     <bean id="containerProperties" class="org.springframework.kafka.listener.ContainerProperties">
-        <constructor-arg value="test"/>
+        <!--设置对应topic-->
+        <constructor-arg value="${kafka.defaultTopic}"/>
         <property name="messageListener" ref="messageListernerConsumerService"/>
     </bean>
 

@@ -15,7 +15,7 @@
 <!--
                 <entry key="bootstrap.servers" value="192.168.42.29:9092,localhost:9093,localhost:9094" />
 -->
-                <entry key="bootstrap.servers" value="192.168.42.29:9092" />
+                <entry key="bootstrap.servers" value="${bootstrap.servers}" />
                 <entry key="group.id" value="group0"/>
                 <!-- 有可能导致broker接收到重复的消息,默认值为3-->
                 <entry key="retries" value="10" />
@@ -46,7 +46,7 @@
         <constructor-arg ref="producerFactory" />
         <constructor-arg  name="autoFlush" value="true" />
         <!--设置对应topic-->
-        <property name="defaultTopic" value="test" />
+        <property name="defaultTopic" value="${kafka.defaultTopic}" />
     </bean>
     <bean id="producerListener" class="com.ctl.web.kafka.controller.KafkaProducerListener" />
 </beans>
