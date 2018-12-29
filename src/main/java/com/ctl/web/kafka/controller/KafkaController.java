@@ -29,8 +29,9 @@ import java.util.UUID;
 @RequestMapping(value="/kafka")
 public class KafkaController {
     Logger logger = LoggerFactory.getLogger(KafkaController.class);
+    //key.serializer(StringDeserializer) 和 value.serializer(StringDeserializer) 决定kafkaTemplate的类型
     @Resource
-    private KafkaTemplate<Long, String> kafkaTemplate;
+    private KafkaTemplate<String, String> kafkaTemplate;
 //    @Autowired
 //    private KafkaProducerListener producerListener;
 
@@ -38,12 +39,13 @@ public class KafkaController {
     @ResponseBody
     public Object hello() {
         logger.info("kafka/hello is excute");
-       // kafkaTemplate.setProducerListener(producerListener);
+        // kafkaTemplate.setProducerListener(producerListener);
         Long time = System.currentTimeMillis();
-        kafkaTemplate.send(ConfigUtils.getType("kafka.defaultTopic"), time,time.toString());
-        kafkaTemplate.send(ConfigUtils.getType("kafka.defaultTopic"), time.toString());
-        Map<String,Object> returnMap = new HashMap<>();
-        returnMap.put("data",time);
+        String data = UUID.randomUUID().toString();
+        kafkaTemplate.send(ConfigUtils.getType("kafka.defaultTopic"), time.toString(), data);
+        kafkaTemplate.send(ConfigUtils.getType("kafka.defaultTopic"), data);
+        Map<String, Object> returnMap = new HashMap<>();
+        returnMap.put("data", time);
         return returnMap;
     }
 
