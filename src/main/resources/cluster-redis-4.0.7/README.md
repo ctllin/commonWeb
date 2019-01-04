@@ -50,4 +50,7 @@ requirepass liebe
 #4、创建集群
    redisCreateCulster
 /home/soft/redis-4.0.7/src/redis-trib.rb create --replicas 1 192.168.42.29:6379 192.168.42.29:6380  192.168.42.29:6381 192.168.42.29:6382 192.168.42.29:6383 192.168.42.29:6384
+
+ redis-cli -c -h 192.168.42.29 -p 6382         
+连接集群加上-c参数，此选项可以防止moved和ask异常
 #5、关闭redis集群后，只需要执行（redisClusterStart）即可不需要再执行（redisCreateCulster）
