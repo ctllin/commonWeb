@@ -1,0 +1,6 @@
+/home/soft/redis-4.0.7/src/redis-server /home/soft/redis-4.0.7/cluster/nodes-6379/redis.conf
+/home/soft/redis-4.0.7/src/redis-server /home/soft/redis-4.0.7/cluster/nodes-6380/redis.conf
+/home/soft/redis-4.0.7/src/redis-server /home/soft/redis-4.0.7/cluster/nodes-6381/redis.conf
+/home/soft/redis-4.0.7/src/redis-server /home/soft/redis-4.0.7/cluster/nodes-6382/redis.conf
+/home/soft/redis-4.0.7/src/redis-server /home/soft/redis-4.0.7/cluster/nodes-6383/redis.conf
+/home/soft/redis-4.0.7/src/redis-server /home/soft/redis-4.0.7/cluster/nodes-6384/redis.conf
