@@ -2,6 +2,6 @@
 .idea/
 target/
 # 忽略bak文件
-*.bak
+#*.bak
 *.iml
 
