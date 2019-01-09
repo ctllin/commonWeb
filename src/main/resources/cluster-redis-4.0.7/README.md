@@ -54,3 +54,10 @@ requirepass liebe
  redis-cli -c -h 192.168.42.29 -p 6382         
 连接集群加上-c参数，此选项可以防止moved和ask异常
 #5、关闭redis集群后，只需要执行（redisClusterStart）即可不需要再执行（redisCreateCulster）
+
+/home/soft/redis-4.0.7/src/redis-cli -c -h 192.168.42.29 -p 6379 -a liebe
+/home/soft/redis-4.0.7/src/redis-cli -c -h 192.168.42.29 -p 6380 -a liebe
+/home/soft/redis-4.0.7/src/redis-cli -c -h 192.168.42.29 -p 6381 -a liebe
+/home/soft/redis-4.0.7/src/redis-cli -c -h 192.168.42.29 -p 6382 -a liebe
+/home/soft/redis-4.0.7/src/redis-cli -c -h 192.168.42.29 -p 6383 -a liebe
+/home/soft/redis-4.0.7/src/redis-cli -c -h 192.168.42.29 -p 6384 -a liebe
