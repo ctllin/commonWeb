@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xmlns:p="http://www.springframework.org/schema/p"
+	   xmlns:context="http://www.springframework.org/schema/context"
+	   xmlns:jee="http://www.springframework.org/schema/jee"
+	   xmlns:tx="http://www.springframework.org/schema/tx"
+	   xmlns:aop="http://www.springframework.org/schema/aop"
+	   xsi:schemaLocation="
+            http://www.springframework.org/schema/beans
+            http://www.springframework.org/schema/beans/spring-beans-4.2.xsd
+            http://www.springframework.org/schema/context
+            http://www.springframework.org/schema/context/spring-context-4.2.xsd">
+
+	<!-- 加载配置属性文件 按需加载 -->
+	<context:property-placeholder ignore-resource-not-found="true"  location="classpath:config.properties" />
+
+	<!-- 配置Cluster -->
+	<bean id="redisClusterConfiguration" class="org.springframework.data.redis.connection.RedisClusterConfiguration">
+		<property name="maxRedirects" value="3"></property>
+		<!-- 节点配置 -->
+		<property name="clusterNodes">
+			<set>
+				<bean class="org.springframework.data.redis.connection.RedisClusterNode">
+					<constructor-arg name="host" value="${redis.cluster.node1.address}"></constructor-arg>
+					<constructor-arg name="port" value="${redis.cluster.node1.port}"></constructor-arg>
+				</bean>
+				<bean class="org.springframework.data.redis.connection.RedisClusterNode">
+					<constructor-arg name="host" value="${redis.cluster.node2.address}"></constructor-arg>
+					<constructor-arg name="port" value="${redis.cluster.node2.port}"></constructor-arg>
+				</bean>
+				<bean class="org.springframework.data.redis.connection.RedisClusterNode">
+					<constructor-arg name="host" value="${redis.cluster.node3.address}"></constructor-arg>
+					<constructor-arg name="port" value="${redis.cluster.node3.port}"></constructor-arg>
+				</bean>
+				<bean class="org.springframework.data.redis.connection.RedisClusterNode">
+					<constructor-arg name="host" value="${redis.cluster.node4.address}"></constructor-arg>
+					<constructor-arg name="port" value="${redis.cluster.node4.port}"></constructor-arg>
+				</bean>
+				<bean class="org.springframework.data.redis.connection.RedisClusterNode">
+					<constructor-arg name="host" value="${redis.cluster.node5.address}"></constructor-arg>
+					<constructor-arg name="port" value="${redis.cluster.node5.port}"></constructor-arg>
+				</bean>
+				<bean class="org.springframework.data.redis.connection.RedisClusterNode">
+					<constructor-arg name="host" value="${redis.cluster.node6.address}"></constructor-arg>
+					<constructor-arg name="port" value="${redis.cluster.node6.port}"></constructor-arg>
+				</bean>
+			</set>
+		</property>
+	</bean>
+	<bean id="jedisPoolConfig" class="redis.clients.jedis.JedisPoolConfig" p:maxIdle="10" p:maxTotal="60" />
+
+	<bean id="stringRedisSerializer" class="org.springframework.data.redis.serializer.StringRedisSerializer" />
+	<bean id="jedisConnectionFactory" class="org.springframework.data.redis.connection.jedis.JedisConnectionFactory" p:password="${redis.cluster.password}">
+		<constructor-arg ref="redisClusterConfiguration" />
+		<constructor-arg ref="jedisPoolConfig" />
+
+	</bean>
+	<!-- redis 访问的模版 -->
+	<bean id="redisTemplate" class="org.springframework.data.redis.core.RedisTemplate">
+		<property name="connectionFactory" ref="jedisConnectionFactory" />
+		<!-- 添加如下序列化配置解决key乱码问题以及令keys()方法生效 -->
+		<property name="keySerializer" ref="stringRedisSerializer"/>
+		<property name="hashKeySerializer" ref="stringRedisSerializer"/>
+	</bean>
+
+</beans>
